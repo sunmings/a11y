@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
     <title>제목없음</title>
     <style>
       body {
@@ -38,20 +37,20 @@
         text-decoration: none;
       }
       h1 {
-        font-size: 28px;
+        font-size: large;
       }
       h3 {
-        font-size: 20px;
+        font-size: medium;
       }
       span {
-        font-size: 15px;
+        font-size: small;
       }
     </style>
   </head>
   <body class="blue">
     <div class="message">
       <div>a11y homework</div>
-      <img src="//develop-with-google-kor.github.io/a11y/homework/unknown-image.jpg" width="500px">
+      <img src="https://develop-with-google-kor.github.io/a11y/homework/unknown-image.jpg" alt="The internship, 2013" width="500px">
     </div>
     <div class="mission">
       <h1>미션</h1>
@@ -69,7 +68,7 @@
       </div>
       <h3>명암비가 너무 낮은 글씨</h3>
       <div>
-        <span id="contrast" style="color:#DBDBDB" >이 문단의 글씨는 저시력자 분들이 보기에는 배경 색과 글자의 색 차이가 별로 나지 않습니다. 저 시력자 분들도 잘 볼 수 있도록 적절하게 색과 크기를 적절히  조정해 주세요.</span>
+        <span id="contrast" style="color:#000000; font-size:xx-large; font-weight:bold" >이 문단의 글씨는 저시력자 분들이 보기에는 배경 색과 글자의 색 차이가 별로 나지 않습니다. 저 시력자 분들도 잘 볼 수 있도록 적절하게 색과 크기를 적절히  조정해 주세요.</span>
       </div>
       <div>
         <button OnClick="javascript:blurToggle()"> 저시력자 체험하기</button>
@@ -77,6 +76,7 @@
       <h3>그 외..</h3>
       <div>
         <span>그 외 Accessibility를 높일 만한 무엇이든 이 페이지에 적용 해 주세요 =)</span>
+	<button id="bgToggleButton" OnClick="javascript:bgChagerToggle()"> 배경 색 바꾸기</button>
       </div>
     </div>
   </body>
@@ -93,14 +93,27 @@ var blurToggle = (function() {
   }
 })();
 
+var is_Paused = true;
+
 var bgChanger = (function() {
   var colors = ["blue", "red", "yellow"];
   var idx = 0;
   return function() {
-    idx = (idx + 1) % 3;
-    document.body.className = colors[idx];
+    if(!is_Paused) {
+      idx = (idx + 1) % 3;
+      document.body.className = colors[idx];
+    }
   }
 })();
-window.setInterval(bgChanger, 100);
+
+window.setInterval(bgChanger, 1000);
+
+var bgChagerToggle = (function() {
+  return function() {
+    document.getElementById("bgToggleButton").innerHTML = is_Paused ? "배경 색 멈추기" : "배경 색 바꾸기";
+    is_Paused ^= 1;
+  }
+})();
+
   </script>
 </html>
