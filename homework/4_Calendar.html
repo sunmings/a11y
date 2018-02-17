@@ -156,6 +156,17 @@
         return (e) => {
           // TODO: e.keyCode 및 위에 정의한 dates 2차원 배열을 이용해 방향키로 focus를 이동하는
           // 로직을 구현하세요. 이 주석 부분 외에 다른 부분은 고치실 필요가 없을 겁니다.
+		
+	if(e.keyCode == '38' && i > 0) {
+		dates[i - 1][j].querySelector('.date').focus();	// up
+	} else if(e.keyCode == '40' && i < dates.length - 1) {
+		dates[i + 1][j].querySelector('.date').focus();	// down
+	} else if(e.keyCode == '37' && j > 0) {
+		dates[i][j - 1].querySelector('.date').focus();	// left
+	} else if(e.keyCode == '39' && j < dates[i].length - 1) {
+		dates[i][j + 1].querySelector('.date').focus();	// right
+	}
+		
         };
       }
     </script>
