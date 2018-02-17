@@ -58,7 +58,7 @@
       <div class="hello-world">Hello, world!</div>
       <input type="radio" name="option">Hello!
       <input type="radio" name="option">Bye!
-      <div id="close" class="fancy-button">닫기</div>
+      <div id="close" class="fancy-button" tabindex="0">닫기</div>
     </dialog>
     <script>
       let settingButton = document.getElementById('setting');
@@ -80,6 +80,7 @@
       
       function closeDialog() {
         dialog.close();
+	settingButton.focus();
       }
     </script>
   </body>
